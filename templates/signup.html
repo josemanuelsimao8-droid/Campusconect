@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylelogin.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesignup.css') }}">
+	<title>Criar conta | Student Portal</title>
+</head>
+<body>
+	<main class="login-page">
+		<section class="login-side signup-side" aria-labelledby="signup-title">
+			<div class="signup-content">
+				<h1 id="signup-title">Criar conta</h1>
+				<p class="signup-intro">Preencha seus dados acadêmicos</p>
+
+				<form class="register-form" action="{{ url_for('views.signup') }}" method="post">
+					<div class="register-grid">
+						<div class="register-field register-field--wide">
+							<label for="full-name">Nome completo</label>
+							<input id="full-name" name="full_name" type="text" autocomplete="name" required>
+						</div>
+						<div class="register-field">
+							<label for="student-number">Número de estudante</label>
+							<input id="student-number" name="student_number" type="text" autocomplete="off" required>
+						</div>
+						<div class="register-field register-field--wide">
+							<label for="university">Universidade</label>
+							<input id="university" name="university" type="text" autocomplete="organization" required>
+						</div>
+						<div class="register-field">
+							<label for="email">E-mail</label>
+							<input id="email" name="email" type="email" autocomplete="email" required>
+						</div>
+						<div class="register-field">
+							<label for="phone">Telefone</label>
+							<input id="phone" name="phone" type="tel" autocomplete="tel" required>
+						</div>
+						<div class="register-field">
+							<label for="location">Localização</label>
+							<input id="location" name="location" type="text" placeholder="Cidade, país" autocomplete="address-level2" required>
+						</div>
+						<div class="register-field">
+							<label for="program">Curso ou programa</label>
+							<input id="program" name="program" type="text" required>
+						</div>
+						<div class="register-field">
+							<label for="password">Senha</label>
+							<input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+						</div>
+						<div class="register-field">
+							<label for="confirm-password">Confirmar senha</label>
+							<input id="confirm-password" name="confirm_password" type="password" autocomplete="new-password" minlength="8" required>
+						</div>
+					</div>
+
+					<label class="register-consent">
+						<input name="information_confirmed" type="checkbox" required>
+						<span>Confirmo que as informações fornecidas são verdadeiras.</span>
+					</label>
+
+					{% if signup_notice %}
+					<p class="signup-notice" role="status">{{ signup_notice }}</p>
+					{% endif %}
+
+					<button class="submit" type="submit">Criar conta</button>
+				</form>
+
+				<p class="signup-return">Já tem uma conta? <a href="{{ url_for('views.login') }}">Entrar</a></p>
+			</div>
+		</section>
+
+		<section class="welcome-side" aria-labelledby="welcome-title">
+			<div class="welcome-card">
+				<div class="welcome-copy">
+					<h2 id="welcome-title"><strong>Welcome to</strong><span>student portal</span></h2>
+					<p>Comece sua jornada acadêmica</p>
+				</div>
+				<div class="artwork">
+					<img src="{{ url_for('static', filename='img/logotipo.png') }}" alt="Estudantes e materiais acadêmicos">
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>
